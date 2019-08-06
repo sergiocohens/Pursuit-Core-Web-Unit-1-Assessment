@@ -5,36 +5,91 @@ let assert = require('assert')
 // Write a function called isOdd that returns whether or not a number is odd.
 // If something that is not a number is passed in, return false.
 
+const isOdd = (num) => {
+  if (typeof num === 'string') {
+    return num * 0 === 0
+  } else if (typeof num !== 'number') {
+    return false
+  } else if (num.toString() !== 'NaN' && typeof num === 'number') {
+  return (num % 2 !== 0)
+  } else {
+  return false
+  }
+}
 
 // Uncomment out the next line to test your solution
-// runQ1Tests()
+runQ1Tests()
 
 
 // Question Two:
 
 // Write a function called numberOfDigits that returns how many digits are in a given number
 
+const numberOfDigits = (number) => {
+  let string = number.toString()
+  return string.length
+}
 // Uncomment out the next line to test your solution
-// runQ2Tests()
+runQ2Tests()
 
 // Question Three:
 
 // Write a function called disemvowel that removes all of the vowels from a string.
 // Treat y as a consonant, not a vowel
 
+const disemvowel = (string) => {
+  let array = string.split('')
+  let noVowels = []
+  array.forEach(letter => {
+    if (letter !== 'a'
+     && letter !== 'e'
+     && letter !== 'i'
+     && letter !== 'o'
+     && letter !== 'u'
+     && letter !== 'A'
+     && letter !== 'E'
+     && letter !== 'I'
+     && letter !== 'O'
+     && letter !== 'U') {
+      noVowels.push(letter)
+    }
+  })
+  return noVowels.join('')
+  }
 // Uncomment out the next line to test your solution
-// runQ3Tests()
+runQ3Tests()
 
 // Question Four:
 // Write a function called secondSmallest that returns the second smallest number in an array
 
+const secondSmallest = (array) => {
+  let smallest = (array.reduce((acc,currEl) => {
+    if (acc < currEl) {
+      return acc
+    } else {
+      return currEl
+    }
+  }))
+  let noSmallest = array.filter (a => a !== smallest)
+  return (noSmallest.reduce((acc,currEl) => {
+    if (acc < currEl) {
+      return acc
+    } else {
+      return currEl
+    }
+  }))
+}
 // Uncomment out the next line to test your solution
-// runQ4Tests()
+runQ4Tests()
 
 // Question Five:
 // Write a function called getLocations that takes in an array of objects that look like the array below,
 // and returns an array of the strings corresponding to the value of the location property
 // The output should be in the same order as the input
+
+const getLocations = (array) => {
+  return array.map(obj => obj = obj['location'])
+}
 
 // Sample input:
 // [{location: "Algeria", population: 41}, {location: "Belize", population: 0.4}, {location: "China", population: 1386}, {location: "Denmark", population: 6}]
@@ -42,8 +97,9 @@ let assert = require('assert')
 // Sample output:
 // ["Algeria", "Belize", "China", "Denmark"]
 
+
 // Uncomment out the next line to test your solution
-// runQ5Tests()
+runQ5Tests()
 
 
 // Question Six:
@@ -51,8 +107,11 @@ let assert = require('assert')
 // Write a function called onlyOddStrings that takes in an array of strings as input and returns an array that only includes strings with an odd number of characters
 // Your function should use a higher-ordered function (e.g map, filter, reduce, every, sort) in its implementation
 
+const onlyOddStrings = (array) => {
+  return array.filter(str => str.length % 2 !== 0)
+}
 // Uncomment out the next line to test your solution
-// runQ6Tests()
+runQ6Tests()
 
 
 // Question Seven:
@@ -66,12 +125,28 @@ let assert = require('assert')
 // let myDay = Day(80, "sunny")
 // myDay.getDescription() // returns "It is 80 degrees and sunny"
 
+class Day {
+  constructor(temperature, weather) {
+    this.temperature = temperature
+    this.weather = weather
+  }
+  getDescription() {
+    return `It is ${this.temperature} degrees and ${this.weather}`
+  }
+}
 //b.
 // Make a function called getAllDayDescriptions that takes in an array of Day objects and returns an array of their descriptions.  Use a higher-ordered function (e.g map, filter, reduce, every, sort) in your implementation.
 // The output should be in the same order as the input
 
+const getAllDayDescriptions = (array) => {
+  let result = []
+  array.forEach(a => {
+    result.push(a.getDescription())
+  })
+  return result
+}
 // Uncomment out the next line to test your solution
-// runQ7Tests()
+ runQ7Tests()
 
 
 
